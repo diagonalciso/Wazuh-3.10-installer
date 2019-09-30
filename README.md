@@ -1,6 +1,6 @@
 # Wazuh-3.10-installer for Debian and Ubuntu
 
-Edit: 29-09-2019
+Edit: 30-09-2019
 
 DO NOT USE, IT'S NOT FINISHED YET. Testing is ok though! :-)
 
