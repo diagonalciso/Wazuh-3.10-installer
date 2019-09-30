@@ -15,7 +15,7 @@ Installation:
 
 sudo -i
 
-apt install git -y && git clone https://github.com/diagonalciso/Wazuh-3.10.git && cd Wazuh-3.10-installer
+apt install git -y && git clone https://github.com/diagonalciso/Wazuh-3.10-installer.git && cd Wazuh-3.10-installer
  && chmod +x wazuh.sh && ./wazuh.sh
 
 There will be a few questions, please answer them when prompted. When done, login under https://ip-address/ :-)
