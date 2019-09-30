@@ -1,4 +1,4 @@
-# Wazuh-3.10-installer-Debian-Ubuntu
+# Wazuh-3.10-installer for Debian and Ubuntu
 
 Edit: 29-09-2019
 
@@ -15,6 +15,7 @@ Installation:
 
 sudo -i
 
-apt install git -y && git clone https://github.com/diagonalciso/Wazuh-3.10.git && cd wazuh-installer && chmod +x wazuh.sh && ./wazuh.sh
+apt install git -y && git clone https://github.com/diagonalciso/Wazuh-3.10.git && cd Wazuh-3.10-installer
+ && chmod +x wazuh.sh && ./wazuh.sh
 
 There will be a few questions, please answer them when prompted. When done, login under https://ip-address/ :-)
