@@ -7,7 +7,7 @@ DO NOT USE, IT'S NOT FINISHED YET. Testing is ok though! :-)
 This simple script will install Single-Host Wazuh 3.10.2 + ELK stack on Debian 9 server or Ubuntu 18.04 server (tested) Please make sure your server has enough RAM (I advise 16GB minimum for production) or the installation may fail.
 
 I will add a reverse proxy at a later time.
-Edit: Proxy added but it has some issues. Uncomment 
+Edit: Proxy added but it has some issues. Comment out "exit" on line 85 if you want to troubleshoot the NGINX proxy.
 
 This is a work in progress.
 
