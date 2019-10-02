@@ -60,9 +60,9 @@ sudo -u kibana /usr/share/kibana/bin/kibana-plugin install https://packages.wazu
 # Kibana will only listen on the loopback interface (localhost) by default, which means that it can be only accessed from the same machine. To access Kibana from the outside make it listen on its network IP by editing the file /etc/kibana/kibana.yml, uncomment the setting server.host, and change the value to:
 # server.host: "<kibana_ip>"
 # Configure the URLs of the Elasticsearch instances to use for all your queries. By editing the file /etc/kibana/kibana.yml:
-# elasticsearch.hosts: ["http://<elasticsearch_ip>:9200"]
+# elasticsearch.hosts: ["http://<elasticsearch.hosts>:9200"]
 clear
-echo -e "Configure the URLs of the Elasticsearch instances to use for all your queries by editing the file /etc/kibana/kibana.yml: \nUncomment server.host and change the ip. \nAlso set elasticsearch.hosts: [http://<elasticsearch_ip>:9200] to the correct ip \nExit nano by pressing F2 then Y"
+echo -e "Configure the URLs of the Elasticsearch instances to use for all your queries by editing the file /etc/kibana/kibana.yml: \nUncomment server.host and change the ip. \nAlso set elasticsearch.hosts: [http://<elasticsearch.hosts:9200] to the correct ip \nExit nano by pressing F2 then Y"
 read -p "Press [Enter] to edit /etc/kibana/kibana.yml"
 nano /etc/kibana/kibana.yml
 systemctl daemon-reload
