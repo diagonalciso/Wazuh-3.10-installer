@@ -68,6 +68,9 @@ sudo -u kibana /usr/share/kibana/bin/kibana-plugin install https://packages.wazu
 # server.host: "<kibana_ip>"
 # Configure the URLs of the Elasticsearch instances to use for all your queries. By editing the file /etc/kibana/kibana.yml:
 # elasticsearch.hosts: ["http://<elasticsearch.hosts>:9200"]
+#server.host: "localhost"
+# #elasticsearch.hosts: ["http://localhost:9200"]
+# sed -i 's/^ 
 clear
 echo -e "Configure the URLs of the Elasticsearch instances to use for all your queries by editing the file /etc/kibana/kibana.yml: \nUncomment server.host and change the ip. \nAlso set elasticsearch.hosts: [http://<elasticsearch.hosts:9200] to the correct ip \nExit nano by pressing F2 then Y"
 read -p "Press [Enter] to edit /etc/kibana/kibana.yml"
@@ -75,8 +78,8 @@ nano /etc/kibana/kibana.yml
 systemctl daemon-reload
 systemctl enable kibana.service
 systemctl start kibana.service
-echo sleeping for 5 minutes
-sleep 300
+echo sleeping for 10 seconds
+sleep 10
 sed -i "s/^deb/#deb/" /etc/apt/sources.list.d/elastic-7.x.list
 apt update
 # Set a user and password for your api
