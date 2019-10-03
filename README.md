@@ -16,6 +16,10 @@ Current status:
 - I am working on reducing user input as much as I can
 - I will reduce the 5 minutes sleep cycles in the script by wathing output of some checks.
 
+ERR: sed -i 's/^#cluster.initial_master_nodes: ["node-1", "node-2"]/cluster.initial_master_nodes: ["node-1"]/' /file
+
+char 96: Invalid range end
+
 I am not a programmer, this will take time (also spare time is an issue)
 
 Installation:
