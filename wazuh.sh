@@ -122,7 +122,7 @@ server {
     }
 }
 EOF
-
+# remark edit proxypass with correct ip ($my_ip)
 apt install apache2-utils -y
 clear
 echo -e "You need to set a username and password to login."
