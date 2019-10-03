@@ -1,6 +1,6 @@
 # Wazuh-3.10-installer for Debian and Ubuntu
 
-Edit: 30-09-2019
+Edit: 3-10-2019 (October 3)
 
 DO NOT USE, IT'S NOT FINISHED YET. Testing is ok though! :-)
 
@@ -10,6 +10,13 @@ I will add a reverse proxy at a later time.
 Edit: Proxy added but it has some issues. Comment out "exit" on line 85 if you want to troubleshoot the NGINX proxy.
 
 This is a work in progress.
+
+Current status:
+- Reverse proxy has some issues
+- I am working on reducing user input as much as I can
+- I will reduce the 5 minutes sleep cycles in the script by wathing output of some checks.
+
+I am not a programmer, this will take time (also spare time is an issue)
 
 Installation:
 
