@@ -34,12 +34,17 @@ apt install elasticsearch=7.3.2
 # Further configuration will be necessary after changing the network.host option. Add or edit (if commented) the following lines in the file /etc/elasticsearch/elasticsearch.yml:
 # node.name: <node_name>
 # cluster.initial_master_nodes: ["<node_name>"]
-clear
-echo -e "Elasticsearch will only listen on the loopback interface (localhost) by default. \nConfigure Elasticsearch to listen to a non-loopback address by editing the file /etc/elasticsearch/elasticsearch.yml \nand uncommenting the setting network.host. Change the value to the ip of the server. \n"
-echo -e "\nnetwork.host: <elasticsearch_ip>"
-echo -e "\n \nFurther configuration will be necessary after changing the network.host option. \nUncomment the following lines in the file /etc/elasticsearch/elasticsearch.yml:\n \n# node.name: <node-1> \n# cluster.initial_master_nodes: \n"
-read -p "Press [Enter] to edit /etc/elasticsearch/elasticsearch.yml"
-nano /etc/elasticsearch/elasticsearch.yml
+#clear
+#echo -e "Elasticsearch will only listen on the loopback interface (localhost) by default. \nConfigure Elasticsearch to listen to a non-loopback address by editing the file /etc/elasticsearch/elasticsearch.yml \nand uncommenting the setting network.host. Change the value to the ip of the server. \n"
+#echo -e "\nnetwork.host: <elasticsearch_ip>"
+my_ip=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
+sed -i "s/^#network.host: 192.168.0.1/network.host: $my_ip/"
+
+# echo -e "\n \nFurther configuration will be necessary after changing the network.host option. \nUncomment the following lines in the file /etc/elasticsearch/elasticsearch.yml:\n \n# node.name: <node-1> \n# cluster.initial_master_nodes: \n"
+sed -i 's/^#node.name: <node-1>/node.name: <node-1>/' /etc/elasticsearch/elasticsearch.yml
+sed -i 's/^#cluster.initial_master_nodes: ["node-1", "node-2"]/cluster.initial_master_nodes: ["node-1"]/' /etc/elasticsearch/elasticsearch.yml
+# read -p "Press [Enter] to edit /etc/elasticsearch/elasticsearch.yml"
+# nano /etc/elasticsearch/elasticsearch.yml
 
 systemctl daemon-reload
 systemctl enable elasticsearch.service
