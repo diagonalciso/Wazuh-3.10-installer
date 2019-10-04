@@ -92,7 +92,7 @@ systemctl restart wazuh-api
 
 # OPTIONAL Install reverse https nginx proxy with login crendetials
 # Comment exit below with a #
-# exit
+exit
 
 apt install nginx -y
 mkdir -p /etc/ssl/certs /etc/ssl/private
