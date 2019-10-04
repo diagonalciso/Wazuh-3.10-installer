@@ -42,8 +42,7 @@ sed -i "s/^#network.host: 192.168.0.1/network.host: $my_ip/" /etc/elasticsearch/
 
 # echo -e "\n \nFurther configuration will be necessary after changing the network.host option. \nUncomment the following lines in the file /etc/elasticsearch/elasticsearch.yml:\n \n# node.name: <node-1> \n# cluster.initial_master_nodes: \n"
 sed -i 's/^#node.name: <node-1>/node.name: <node-1>/' /etc/elasticsearch/elasticsearch.yml
-sed -i 's/^#cluster.initial_master_nodes: ["node-1", "node-2"]/cluster.initial_master_nodes: ["node-1"]/' /etc/elasticsearch/elasticsearch.yml
-# read -p "Press [Enter] to edit /etc/elasticsearch/elasticsearch.yml"
+sed -i 's/^#cluster\.initial_master_nodes: \["node-1", "node-2"]/cluster.initial_master_nodes: ["node-1"]'/i# read -p "Press [Enter] to edit /etc/elasticsearch/elasticsearch.yml"
 # nano /etc/elasticsearch/elasticsearch.yml
 
 systemctl daemon-reload
