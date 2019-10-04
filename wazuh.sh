@@ -1,5 +1,8 @@
 # Install Wazuh repo
-echo Install Wazuh repo
+echo Install Wazuh repo\n
+echo -e "You need to set a username and password for the Wazuh API."
+read -p "Please enter a username : " apiuser
+
 apt update && apt upgrade -y && apt autoremove -y
 apt install curl apt-transport-https lsb-release gnupg2 dirmngr sudo expect net-tools -y
 if [ ! -f /usr/bin/python ]; then ln -s /usr/bin/python3 /usr/bin/python; fi
@@ -84,10 +87,10 @@ sed -i "s/^deb/#deb/" /etc/apt/sources.list.d/elastic-7.x.list
 apt update
 # Set a user and password for your api
 clear
-echo -e "You need to set a username and password for the Wazuh API."
-read -p "Please enter a username : " user
+#echo -e "You need to set a username and password for the Wazuh API."
+#read -p "Please enter a username : " apiuser
 cd /var/ossec/api/configuration/auth
-node htpasswd -c user $user
+node htpasswd -c user $apiuser
 systemctl restart wazuh-api
 
 # OPTIONAL Install reverse https nginx proxy with login crendetials
