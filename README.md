@@ -12,13 +12,8 @@ Edit: Proxy added but it has some issues. Comment out "exit" on line 85 if you w
 This is a work in progress.
 
 Current status:
-- Reverse proxy has some issues
-- I am working on reducing user input as much as I can
-- I will reduce the 5 minutes sleep cycles in the script by wathing output of some checks.
-
-ERR: sed -i 's/^#cluster.initial_master_nodes: ["node-1", "node-2"]/cluster.initial_master_nodes: ["node-1"]/' /file
-
-char 96: Invalid range end
+- Script is working, but the reverse proxy has not been implementet yet
+- Nu oser pass on Kibana yet.
 
 I am not a programmer, this will take time (also spare time is an issue)
 
@@ -29,4 +24,5 @@ sudo -i
 apt install git -y && git clone https://github.com/diagonalciso/Wazuh-3.10-installer.git && cd Wazuh-3.10-installer
  && chmod +x wazuh.sh && ./wazuh.sh
 
-There will be a few questions, please answer them when prompted. When done, login under https://ip-address/ :-)
+There will be a few questions, please answer them when prompted. 
+When done, wait for 2 minutes and browse to http://ip-address:5601
