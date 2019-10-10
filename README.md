@@ -12,8 +12,7 @@ Edit: Proxy added but it has some issues. Comment out "exit" on line 85 if you w
 This is a work in progress.
 
 Current status:
-- Script is working, but the reverse proxy has not been implementet yet
-- Nu oser pass on Kibana yet.
+- Script is working, but the reverse proxy has not been implementet yet. so don't expose your server to the internet!
 
 I am not a programmer, this will take time (also spare time is an issue)
 
