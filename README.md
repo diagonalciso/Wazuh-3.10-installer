@@ -1,6 +1,7 @@
 # Wazuh-3.10-installer for Debian 9 and Ubuntu 18.04 #
 
 Edit: 12-10-2019 (October 12)
+ON HOLD, Something is not working, only try this if you like to help troubleshooting.
 
 This simple script will install Single-Host Wazuh 3.10.2 + ELK stack on Debian 9 server or Ubuntu 18.04 server (tested), in under 20 minutes on a reasonable server.
 
