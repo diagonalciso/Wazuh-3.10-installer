@@ -119,6 +119,7 @@ read -p "Please enter a username : " apiuser
 node htpasswd -c user $apiuser
 systemctl restart wazuh-api
 clear
-echo "All done! You can login under https://$ng_ip/ \nIf you find any bugs please let me know.\n\n Have fun with Wazuh!"
+my_ip=\""$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')\""
+echo "All done! You can login under https://$my_ip/ \nIf you find any bugs please let me know.\n\n Have fun with Wazuh!"
 read -p "Press [Enter] to exit." 
 
