@@ -70,13 +70,9 @@ apt update
 # Set a user and password for your api
 clear
 cd /var/ossec/api/configuration/auth
-echo -e "You need to set a username and password for the Wazuh API."
-read -p "Please enter a username : " apiuser
-node htpasswd -c user $apiuser
-systemctl restart wazuh-api
 
-echo -e "Installation done. Login under http://192.168.0.68:5601"
-exit
+
+#exit
 
 # OPTIONAL Install reverse https nginx proxy with login crendetials
 # Comment exit below with a #
@@ -109,14 +105,20 @@ server {
     }
 }
 EOF
-# remark edit proxypass with correct ip ($my_ip)
+ng_ip="$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}'):5601"
+sed -i "s/localhost:5601/$ng_ip/" /etc/nginx/sites-available/default
+
 apt install apache2-utils -y
 clear
 echo -e "You need to set a username and password to login."
 read -p "Please enter a username : " user
 htpasswd -c /etc/nginx/conf.d/kibana.htpasswd $user
 systemctl restart nginx
+echo -e "You need to set a username and password for the Wazuh API."
+read -p "Please enter a username : " apiuser
+node htpasswd -c user $apiuser
+systemctl restart wazuh-api
 clear
-echo "All done! You can login under https://ip_of_yourserver/ \nIf you find any bugs please let me know.\n\n Have fun with Wazuh!"
+echo "All done! You can login under https://$ng_ip/ \nIf you find any bugs please let me know.\n\n Have fun with Wazuh!"
 read -p "Press [Enter] to exit." 
 
