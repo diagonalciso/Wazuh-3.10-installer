@@ -20,4 +20,4 @@ apt install git -y && git clone https://github.com/diagonalciso/Wazuh-3.10-insta
 There will be a few questions, please answer them when prompted. 
 When done, wait for 2 minutes and browse to https://ip-address/ (Until then you might get an error, just be patient)
 
-"regex can be a pain in the butt but its total fun working with"
+"Regex can be a pain in the butt, but it's total fun working with"
