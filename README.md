@@ -8,6 +8,8 @@ Please make sure your server has enough RAM (I advise 16GB minimum for productio
 I used https://wazuh.com/start/ as a guide for building this installer. (For Debian from packages).
 You'll find additional resources there too.
 
+I might need to cleanup this script a bit, but for now it just works (at least for me).
+
 Installation:
 
 sudo -i
