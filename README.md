@@ -1,17 +1,12 @@
 # Wazuh-3.10-installer for Debian and Ubuntu
 
-Edit: 10-10-2019 (October 10)
+Edit: 12-10-2019 (October 12)
 
-This simple script will install Single-Host Wazuh 3.10.2 + ELK stack on Debian 9 server or Ubuntu 18.04 server (tested) Please make sure your server has enough RAM (I advise 16GB minimum for production) or the installation may fail.
+This simple script will install Single-Host Wazuh 3.10.2 + ELK stack on Debian 9 server or Ubuntu 18.04 server (tested), in under 10 minutes on a reasonable server.
+Please make sure your server has enough RAM (I advise 16GB minimum for production) or the installation may fail.
 
-I will add a reverse proxy at a later time.
-
-This is a work in progress.
-
-Current status:
-- Script is working, but the reverse proxy has not been implementet yet. so don't expose your server to the internet!
-
-I am not a programmer, this will take time (also spare time is an issue)
+I used https://wazuh.com/start/ as a guide for building this installer. (For Debian from packages).
+You'll find additional resources there too.
 
 Installation:
 
@@ -21,6 +16,6 @@ apt install git -y && git clone https://github.com/diagonalciso/Wazuh-3.10-insta
  && chmod +x wazuh.sh && ./wazuh.sh
 
 There will be a few questions, please answer them when prompted. 
-When done, wait for 2 minutes and browse to http://ip-address:5601
+When done, wait for 2 minutes and browse to https://ip-address/ (Until then you might get an error, just be patient)
 
 "regex can be a pain in the butt but its total fun working with"
