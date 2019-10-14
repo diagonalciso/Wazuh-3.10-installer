@@ -32,22 +32,21 @@ curl -so /etc/filebeat/wazuh-template.json https://raw.githubusercontent.com/waz
 curl -s https://packages.wazuh.com/3.x/filebeat/wazuh-filebeat-0.1.tar.gz | sudo tar -xvz -C /usr/share/filebeat/module
 my="$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}'):9200"
 sed -i "s/YOUR_ELASTIC_SERVER_IP:9200/$my_ip/" /etc/filebeat/filebeat.yml
+systemctl daemon-reload
+systemctl enable filebeat.service
+systemctl start filebeat.service
 
 # Install Elastic Stack
 echo Elastic Stack
-apt install curl apt-transport-https
 curl -s https://artifacts.elastic.co/GPG-KEY-elasticsearch | apt-key add -
 echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | tee /etc/apt/sources.list.d/elastic-7.x.list
 apt update
 apt install elasticsearch=7.3.2
-
 my_ip=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
 sed -i "s/^#network.host: 192.168.0.1/network.host: $my_ip/" /etc/elasticsearch/elasticsearch.yml
-
 # echo -e "\n \nFurther configuration will be necessary after changing the network.host option. \nUncomment the following lines in the file /etc/elasticsearch/elasticsearch.yml:\n \n# node.name: <node-1> \n# cluster.initial_master_nodes: \n"
 sed -i 's/^#node\.name: node\-1/node\.name: node\-1/'i /etc/elasticsearch/elasticsearch.yml
 sed -i 's/^#cluster\.initial_master_nodes: \["node-1", "node-2"]/cluster.initial_master_nodes: ["node-1"]'/i /etc/elasticsearch/elasticsearch.yml
-
 systemctl daemon-reload
 systemctl enable elasticsearch.service
 systemctl start elasticsearch.service
@@ -57,19 +56,17 @@ echo sleeping for 5 minutes
 sleep 300
 # notes: curl "http://localhost:9200/?pretty"
 # curl: (7) Failed to connect to localhost port 9200: Connection refused
+# filebeat setup --index-management -E setup.template.json.enabled=false
 
 # Install Kibana
 apt install kibana=7.3.2
 sudo -u kibana /usr/share/kibana/bin/kibana-plugin install https://packages.wazuh.com/wazuhapp/wazuhapp-3.10.2_7.3.2.zip
-
-clear
 my_ip=\""$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')\""
 sed -i "s/^#server\.host: \"localhost\"/server\.host: $my_ip/" /etc/kibana/kibana.yml
 echo -e "Configure the URLs of the Elasticsearch instances to use for all your queries by editing the file /etc/kibana/kibana.yml: \nUncomment server.host and change the ip. \nAlso set elasticsearch.hosts: [http://<elasticsearch.hosts:9200] to the correct ip \nExit nano by pressing F2 then Y"
 my_ip="$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}'):9200"
 sed -i "s/^#elasticsearch\.hosts/elasticsearch.hosts/" /etc/kibana/kibana.yml
 sed -i "s/localhost:9200/$my_ip/" /etc/kibana/kibana.yml
-
 systemctl daemon-reload
 systemctl enable kibana.service
 systemctl start kibana.service
@@ -78,16 +75,7 @@ sleep 10
 sed -i "s/^deb/#deb/" /etc/apt/sources.list.d/elastic-7.x.list
 apt update
 
-# Set a user and password for your api
-clear
-cd /var/ossec/api/configuration/auth
-
-
-#exit
-
-# OPTIONAL Install reverse https nginx proxy with login crendetials
-# Comment exit below with a #
-
+# Protect Kibana with a reverse proxy
 apt install nginx -y
 mkdir -p /etc/ssl/certs /etc/ssl/private
 cp <ssl_pem> /etc/ssl/certs/kibana-access.pem
@@ -125,11 +113,11 @@ echo -e "You need to set a username and password to login."
 read -p "Please enter a username : " user
 htpasswd -c /etc/nginx/conf.d/kibana.htpasswd $user
 systemctl restart nginx
+cd /var/ossec/api/configuration/auth
 echo -e "You need to set a username and password for the Wazuh API."
 read -p "Please enter a username : " apiuser
 node htpasswd -c user $apiuser
 systemctl restart wazuh-api
-clear
 my_ip=\""$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')\""
 echo "All done! You can login under https://$my_ip"
 read -p "Press [Enter] to exit." 
