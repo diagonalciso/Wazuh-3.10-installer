@@ -125,7 +125,7 @@ echo -e "You need to set a username and password for the Wazuh API."
 read -p "Please enter a username : " apiuser
 node htpasswd -c user $apiuser
 systemctl restart wazuh-api
-my_ip=\"$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')\"
+my_ip=$(ip route get 8.8.8.8 | awk -F"src " 'NR==1{split($2,a," ");print a[1]}')
 echo "All done! You can login under https://$my_ip"
 read -p "Press [Enter] to exit." 
 
