@@ -1,5 +1,7 @@
 # Wazuh-3.10-installer for Debian 9 #
 
+NOT FOR PRODUCTION USE.
+
 This simple script will install Single-Host Wazuh 3.10.2 + ELK stack on Debian 9.
 
 Please make sure your server has enough RAM (I advise 16GB minimum for production) or the installation may fail. For testing 4 GB will do.
