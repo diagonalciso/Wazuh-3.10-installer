@@ -1,6 +1,6 @@
 # Wazuh-3.10-installer for Debian 9 #
 
-NOT FOR PRODUCTION USE.
+NOT FOR PRODUCTION USE. OUTDATED!!!
 
 This simple script will install Single-Host Wazuh 3.10.2 + ELK stack on Debian 9.
 
