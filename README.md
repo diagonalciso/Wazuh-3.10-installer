@@ -1,6 +1,11 @@
 # Wazuh-3.10-installer for Debian 9 #
 
 NOT FOR PRODUCTION USE. OUTDATED!!!
+DEPRECATED!!! Use Wazuh's own installer instead.
+
+https://documentation.wazuh.com/4.0/installation-guide/open-distro/all-in-one-deployment/unattended-installation.html
+
+DO NOY USE MY CODE BELOW!!!
 
 This simple script will install Single-Host Wazuh 3.10.2 + ELK stack on Debian 9.
 
